@@ -1,4 +1,5 @@
 let activePlayer = "X";
+let lastPlayer = "";
 let field = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 
 function checkLoser() {
@@ -35,7 +36,7 @@ function checkLoser() {
       field[combo[0]] === field[combo[1]] &&
       field[combo[1]] === field[combo[2]]
     ) {
-      alert(activePlayer + " hat verloren!");
+      alert(lastPlayer + " hat verloren!");
       resetGameboard();
       return;
     }
@@ -63,9 +64,14 @@ function renderGameboard() {
     singlecell.addEventListener("click", function () {
       if (field[i] === "") {
         field[i] = activePlayer;
+        lastPlayer = activePlayer;
         renderGameboard();
-        checkLoser();
         activePlayer = activePlayer === "X" ? "O" : "X";
+
+        setTimeout(function () {
+          renderGameboard();
+          checkLoser();
+        }, 0);
       }
     });
 
