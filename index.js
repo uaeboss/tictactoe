@@ -68,11 +68,10 @@ function renderGameboard() {
         renderGameboard();
         activePlayer = activePlayer === "X" ? "O" : "X";
 
-        setTimeout(function() {
-            renderGameboard();
-            checkLoser(activePlayer);
+        setTimeout(function () {
+          renderGameboard();
+          checkLoser();
         }, 0);
-        
       }
     });
 
